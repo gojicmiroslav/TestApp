@@ -64,8 +64,16 @@ class PagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_page
-      @page = Page.find(params[:id])
+      #@page = Page.find_by_slog!(params[:id])
+      @page = Page.find_by!(slug: params[:id])
     end
+
+    # second approach
+    # def page
+    #   @page ||= Page.find_by_slog!(params[:id])
+    # end
+
+    # helper_method :page
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
